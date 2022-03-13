@@ -7,10 +7,9 @@
 
 "use strict";
 
-let CartItem =  require('../CartItem/CartItem.js');
-const InvalidArticleIdException = require("../CartItem/InvalidArticleIdException.js");
-const InvalidQuantityException = require("../CartItem/InvalidQuantityException.js");
-const InvalidPriceException = require("../CartItem/InvalidPriceException.js");
+const Song = require('../Song/Song.js');
+const TooShortSongException = require('../Song/TooShortSongException.js');
+
 
 test('allGetters_NominalCase_Success', () => {
     //given

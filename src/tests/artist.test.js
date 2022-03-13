@@ -8,7 +8,7 @@
 "use strict";
 
 const Artist =  require('../Artist/Artist.js');
-const AgeException = require('AgeException.js');
+const DateOfBirthException = require('DateOfBirthException.js');
 
 test('toString_NominalCaseWithoutDateOfBirth_Success', () => {
     //given
@@ -36,5 +36,19 @@ test('toString_NominalCaseWithDateOfBirth_Success', () => {
     //we call the getters directly in assertion below
 
     //then
-    expect(expectedToString).toEqual(artist.toString());
+    expect(expectedToString).toEqual(artist.toString(true));
+})
+
+test('toString_DateOfBirthNotProvided_ThrowException', () => {
+    //given
+    let expectedFirstname = "Ludovico";
+    let expectedLastname = "Einaudi";
+    let artist = new Artist(expectedFirstname, expectedLastname);
+    let expectedToString = expectedFirstname + expectedLastname);
+
+    //when
+    expect(() => artist.toString(true)).toThrow(DateOfBirthException);
+
+    //then
+    //Exception is thrown
 })
