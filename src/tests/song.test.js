@@ -1,9 +1,8 @@
 /**
- * @file      cart.test.js
- * @brief     This class is designed to test the behaviour of a cartItem.
+ * @file      song.test.js
+ * @brief     This class is designed to test the behaviour of a song.
  * @author    Created by Nicolas.GLASSEY
- * @version   13-02-2022 - original (dedicated to RIA1)
- * @version   08-03-2022 - update
+ * @version   13-MAR-2022 - original (dedicated to RIA1 EVAL)
  */
 
 "use strict";

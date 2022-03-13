@@ -22,14 +22,7 @@ module.exports = class Artist{
      * @param lastname
      * @param dateOfBirth
      */
-    constructor (firstname, lastname, dateOfBirth) {
-        throw new Error();
-    }
-
-    /**
-     * This getter returns the Artist'age
-     */
-    get age(){
+    constructor (firstname, lastname, dateOfBirth = null) {
         throw new Error();
     }
 
@@ -39,7 +32,7 @@ module.exports = class Artist{
      * @returns "Firstname Lastname {Age}"
      * @exception throws AgeException if the private attribute age was not provided
      */
-    toString(withAge = false){
+    toString(withDateOfBirth = false){
         throw new Error();
     }
     //endregion public methods
