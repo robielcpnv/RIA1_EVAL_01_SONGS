@@ -5,7 +5,7 @@
  * @version   12-MAR-2022 - original (dedicated to RIA1 EVAL)
  */
 
-const AgeException = require('src/Artist/DateOfBirthException.js');
+const DateOfBirthException = require('./DateOfBirthException.js');
 
 module.exports = class Artist{
 
@@ -23,7 +23,9 @@ module.exports = class Artist{
      * @param dateOfBirth
      */
     constructor (firstname, lastname, dateOfBirth = null) {
-        throw new Error();
+        this.#firstname = firstname;
+        this.#lastname = lastname;
+        this.#dateOfBirth = dateOfBirth;
     }
 
     /**
@@ -33,7 +35,15 @@ module.exports = class Artist{
      * @exception throws DateOfBirthException Date Of Birth was not provided
      */
     toString(withDateOfBirth = false){
-        throw new Error();
+        let stringToReturn = this.#firstname + " " + this.#lastname;
+        if (withDateOfBirth){
+            if (this.#dateOfBirth == null){
+                throw new DateOfBirthException();
+            }else{
+                stringToReturn += " " + this.#dateOfBirth;
+            }
+        }
+        return stringToReturn;
     }
     //endregion public methods
 

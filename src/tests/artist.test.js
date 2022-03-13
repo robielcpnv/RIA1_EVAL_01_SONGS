@@ -8,20 +8,20 @@
 "use strict";
 
 const Artist =  require('../Artist/Artist.js');
-const DateOfBirthException = require('DateOfBirthException.js');
+const DateOfBirthException = require('../Artist/DateOfBirthException.js');
 
 test('toString_NominalCaseWithoutDateOfBirth_Success', () => {
     //given
     let expectedFirstname = "Firstname";
     let expectedLastname = "Lastname";
     let artist = new Artist(expectedFirstname, expectedLastname);
-    let expectedToString = expectedFirstname + expectedLastname;
+    let expectedToString = expectedFirstname + " " + expectedLastname;
 
     //when
     //we call the getters directly in assertion below
 
     //then
-    expect(expectedToString).toEqual(artist.toString());
+    expect(artist.toString()).toEqual(expectedToString);
 })
 
 test('toString_NominalCaseWithDateOfBirth_Success', () => {
@@ -30,13 +30,13 @@ test('toString_NominalCaseWithDateOfBirth_Success', () => {
     let expectedLastname = "Lastname";
     let expectedDateOfBirth = Date(1955, 11, 23);
     let artist = new Artist(expectedFirstname, expectedLastname, expectedDateOfBirth);
-    let expectedToString = expectedFirstname + expectedLastname + expectedDateOfBirth.toString();
+    let expectedToString = expectedFirstname + " " + expectedLastname + " " + expectedDateOfBirth.toString();
 
     //when
     //we call the getters directly in assertion below
 
     //then
-    expect(expectedToString).toEqual(artist.toString(true));
+    expect(artist.toString(true)).toEqual(expectedToString);
 })
 
 test('toString_DateOfBirthNotProvided_ThrowException', () => {
