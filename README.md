@@ -58,6 +58,7 @@ Voici des sources qui vous aideront à vous lancer :
   * [Les accesseurs en Java Script](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Functions/get)
   * [Les mutateurs en Java Script](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Functions/set)
   * [Exception en Java Script](https://rollbar.com/guides/javascript/how-to-throw-exceptions-in-javascript/#)
+  * [Les dates en Java Script](https://www.w3schools.com/jsref/jsref_obj_date.asp)
 * [Premier pas avec Jest](https://jestjs.io/docs/getting-started)
   * [Les comparateurs](https://jestjs.io/fr/docs/expect)
   * [Les exceptions](https://jestjs.io/docs/using-matchers#exceptions)

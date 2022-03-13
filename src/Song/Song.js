@@ -19,10 +19,10 @@ module.exports = class Song {
 
     //region public methods
     /**
-     * This method constructs a Song Object
+     * @brief This method constructs a Song Object (title must be unique)
      * @param title
-     * @param length : length of the song
-     * @param artists : the artist-s created the song
+     * @param length : number of seconds
+     * @param artists : Artist[] artist-s who (co-)created the song
      * @exception Throws TooShortLengthException if the song length do not reach 10 seconds.
      * @exception Throws DuplicateArtistException if the list contains more than one time the same artist
      */
@@ -31,7 +31,7 @@ module.exports = class Song {
     }
 
     /**
-     * This getter returns the list of artists
+     * @brief This getter returns the list of artists
      * @returns the list of artists or, if the list is empty, returns null.
      */
     get artists(){

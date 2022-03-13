@@ -5,7 +5,7 @@
  * @version   12-MAR-2022 - original (dedicated to RIA1 EVAL)
  */
 
-const AgeException = require('AgeException.js');
+const AgeException = require('src/Artist/DateOfBirthException.js');
 
 module.exports = class Artist{
 
@@ -17,29 +17,22 @@ module.exports = class Artist{
 
     //region public methods
     /**
-     * This method constructs an Artist object
+     * @brief This method constructs an Artist object (combination of firstname and lastname must be unique)
      * @param firstname
      * @param lastname
      * @param dateOfBirth
      */
-    constructor (firstname, lastname, dateOfBirth) {
+    constructor (firstname, lastname, dateOfBirth = null) {
         throw new Error();
     }
 
     /**
-     * This getter returns the Artist'age
-     */
-    get age(){
-        throw new Error();
-    }
-
-    /**
-     * This method returns artist string
+     * @brief This method returns artist string
      * @param withAge : include age in the string if set to true
      * @returns "Firstname Lastname {Age}"
-     * @exception throws AgeException if the private attribute age was not provided
+     * @exception throws DateOfBirthException Date Of Birth was not provided
      */
-    toString(withAge = false){
+    toString(withDateOfBirth = false){
         throw new Error();
     }
     //endregion public methods

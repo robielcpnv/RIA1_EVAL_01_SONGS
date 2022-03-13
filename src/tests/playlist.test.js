@@ -1,149 +1,129 @@
 /**
- * @file      cart.test.js
- * @brief     This class is designed to test the behaviour of a cart.
+ * @file      playlist.test.js
+ * @brief     This class is designed to test the behaviour of a Playlist.
  * @author    Created by Nicolas.GLASSEY
- * @version   13-02-2022 - original (dedicated to RIA1)
- * @version   08-03-2022 - update
+ * @version   13-MAR-2022 - original (dedicated to RIA1 EVAL)
  */
 
-let Cart = require('../Cart/Cart.js');
-const CartItem = require("../CartItem/CartItem.js");
-const EmptyCartException = require("../Cart/EmptyCartException.js");
-const UpdateCartException = require("../Cart/UpdateCartException.js");
+const Playlist = require('../Playlist/Playlist.js');
+const DuplicateSongException = require('../Playlist/DuplicateSongException.js');
+const Artist = require("../Artist/Artist.js");
+const Song = require("../Song/Song.js");
 
-test('items_NominalCase_Success', () => {
+test('constructor_DuplicateSongDetectedAndAllowed_Success', () => {
     //given
-    let cartItem1 = new CartItem(1,"Iphone 27", 1,10);
-    let cartItem2= new CartItem(2,"Iphone 28",2,20);
-    let expectedItems = [cartItem1, cartItem2];
-    let actualItems = null;
-    let cart = new Cart(expectedItems);
+    let artist1 = new Artist("firstname1", "lastname1");
+    let artist2 = new Artist("firstname2", "lastname2");
+    let artist3 = new Artist("firstname3", "lastname3");
+    let artistsSong1 = [artist1, artist2, artist3];
+    let song1 = new Song("Title1", 45, artistsSong1);
+    let expectedPlaylistLength = 145;
 
     //when
-    actualItems = cart.items;
-
-    //then
-    for (let i = 0 ; i <= expectedItems.length ; i++)
-    {
-        expect(expectedItems[i]).toEqual(actualItems[i]);
-    }
-})
-
-test('items_EmptyCart_ThrowException', () => {
-    //given
-    let cart = new Cart(null);
-
-    //when
-    expect(() => cart.items).toThrow(EmptyCartException);
+    expect(() => new Playlist("MyPlaylist", [song1, song1], true)).toThrow(DuplicateSongException);
 
     //then
     //Exception is thrown
 })
 
-test('getTotalCart_NominalCase_Success', () => {
+test('constructor_DuplicateSongDetectedButNotAllowed_ThrowException', () => {
     //given
-    let cartItem1 = new CartItem(1,"Iphone 27",1,10);
-    let cartItem2= new CartItem(2,"Iphone 28",2,20);
-    let items = [cartItem1, cartItem2];
-    let cart = new Cart(items);
-    let totalPriceExpected = 50;
+    let artist1 = new Artist("firstname1", "lastname1");
+    let artist2 = new Artist("firstname2", "lastname2");
+    let artist3 = new Artist("firstname3", "lastname3");
+    let artistsSong1 = [artist1, artist2, artist3];
+    let song1 = new Song("Title1", 45, artistsSong1);
+    let expectedPlaylistLength = 145;
 
     //when
-    //we call the property directly in assertion below
-
-    //then
-    expect(totalPriceExpected).toEqual(cart.totalPrice);
-})
-
-test('getTotalCart_EmptyCart_ThrowException', () => {
-    //given
-    let cart = new Cart(null);
-
-    //when
-    expect(() => cart.totalPrice).toThrow(EmptyCartException);
+    expect(() => new Playlist("MyPlaylist", [song1, song1])).toThrow(DuplicateSongException);
 
     //then
     //Exception is thrown
 })
 
-test('count_OnlySingleQuantityProduct_Success', () => {
+test('length_NominalCase_Success', () => {
     //given
-    let cartItem1 = new CartItem(1,"Iphone 27",1,10);
-    let cartItem2= new CartItem(2,"Iphone 28", 1,20);
-    let items = [cartItem1, cartItem2];
-    let cart = new Cart(items);
-    let countExpected = 2;
+    let artist1 = new Artist("firstname1", "lastname1");
+    let artist2 = new Artist("firstname2", "lastname2");
+    let artist3 = new Artist("firstname3", "lastname3");
+    let artistsSong1 = [artist1, artist2, artist3];
+    let song1 = new Song("Title1", 45, artistsSong1);
+    let artist4 = new Artist("firstname1", "lastname1");
+    let artistsSong2 = [artist1, artist2, artist4];
+    let song2 = new Song("Title2", 100, artistsSong2);
+    let playlist = new Playlist("MyPlaylist", [song1, song2]);
+    let expectedPlaylistLength = 145;
 
     //when
-    //we call the property directly in assertion below
+    //getter are called in the same time as the assertion below
 
     //then
-    expect(countExpected).toEqual(cart.count());
+    expect(expectedPlaylistLength).toEqual(playlist.length);
 })
 
-test('count_MixSingleAndMultipleQuantityProductSuccess', () => {
+test('addSongs_NominalCase_Success', () => {
     //given
-    let cartItem1 = new CartItem(1,"Iphone 27",1,10);
-    let cartItem2= new CartItem(2,"Iphone 28", 2,20);
-    let items = [cartItem1, cartItem2];
-    let cart = new Cart(items);
-    let countExpected = 3;
+    let artist1 = new Artist("firstname1", "lastname1");
+    let artist2 = new Artist("firstname2", "lastname2");
+    let artist3 = new Artist("firstname3", "lastname3");
+    let artistsSong1 = [artist1, artist2, artist3];
+    let song1 = new Song("Title1", 45, artistsSong1);
+    let artist4 = new Artist("firstname1", "lastname1");
+    let artistsSong2 = [artist1, artist2, artist4];
+    let song2 = new Song("Title2", 100, artistsSong2);
+    let playlist = new Playlist("MyPlaylist", [song1, song2]);
+
+    let songToAdd = new Song("TitleToAdd", 60,artistsSong1);
+    let expectedPlaylistLength = 205;
 
     //when
-    //we call the property directly in assertion below
+    playlist.addSongs([songToAdd]);
 
     //then
-    expect(countExpected).toEqual(cart.count());
+    expect(expectedPlaylistLength).toEqual(playlist.length);
 })
 
-test('count_MixSingleAndMultipleQuantityProductDistinct_Success', () => {
+test('addSongs_DuplicateDetectedAndAllowed_Success', () => {
     //given
-    let cartItem1 = new CartItem(1,"Iphone 27",1,10);
-    let cartItem2= new CartItem(2,"Iphone 28", 2,20);
-    let items = [cartItem1, cartItem2];
-    let cart = new Cart(items);
-    let countExpected = 2;
+    let artist1 = new Artist("firstname1", "lastname1");
+    let artist2 = new Artist("firstname2", "lastname2");
+    let artist3 = new Artist("firstname3", "lastname3");
+    let artistsSong1 = [artist1, artist2, artist3];
+    let song1 = new Song("Title1", 45, artistsSong1);
+    let artist4 = new Artist("firstname1", "lastname1");
+    let artistsSong2 = [artist1, artist2, artist4];
+    let song2 = new Song("Title2", 100, artistsSong2);
+    let playlist = new Playlist("MyPlaylist", [song1, song2], true);
+    let expectedPlaylistLength = 145;
+
+    let songToAdd = new Song("Title1", 60,artistsSong1);
 
     //when
-    //we call the property directly in assertion below
+    playlist.addSongs([songToAdd]);
 
     //then
-    expect(countExpected).toEqual(cart.count(true));
+    expect(expectedPlaylistLength).toEqual(playlist.length);
 })
 
-test('count_EmptyCart_ThrowException', () => {
+test('addSongs_DuplicateDetectedNotAllowed_ThrowException', () => {
     //given
-    let cart = new Cart(null);
+    let artist1 = new Artist("firstname1", "lastname1");
+    let artist2 = new Artist("firstname2", "lastname2");
+    let artist3 = new Artist("firstname3", "lastname3");
+    let artistsSong1 = [artist1, artist2, artist3];
+    let song1 = new Song("Title1", 45, artistsSong1);
+    let artist4 = new Artist("firstname1", "lastname1");
+    let artistsSong2 = [artist1, artist2, artist4];
+    let song2 = new Song("Title2", 100, artistsSong2);
+    let playlist = new Playlist("MyPlaylist", [song1, song2]);
+    let expectedPlaylistLength = 145;
+
+    let songToAdd = new Song("Title1", 60,artistsSong1);
 
     //when
-    expect(() => cart.count()).toThrow(EmptyCartException);
+    playlist.addSongs([songToAdd]);
 
     //then
-    //Exception is thrown
-})
-
-test('updateCart_EmptyCartAddFirstSingleCartItem_Success', () => {
-    //given
-    let cart = new Cart(null);
-    let expectedTotalPrice = 10;
-    let cartItem1 = new CartItem(1,"Iphone 27",1,expectedTotalPrice);
-    let items = [cartItem1];
-
-    //when
-    cart.updateCart(items);
-
-    //then
-    expect(expectedTotalPrice).toEqual(cart.totalPrice);
-})
-
-test('updateCart_EmptyCartEmptyItemsToAdd_ThrowException', () => {
-    //given
-    let cart = new Cart(null);
-    let items = null;
-
-    //when
-    expect(() => cart.updateCart(items)).toThrow(UpdateCartException);
-
-    //then
-    //Exception is thrown
+    expect(expectedPlaylistLength).toEqual(playlist.length);
 })
