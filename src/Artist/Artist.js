@@ -17,7 +17,7 @@ module.exports = class Artist{
 
     //region public methods
     /**
-     * This method constructs an Artist object
+     * @brief This method constructs an Artist object (combination of firstname and lastname must be unique)
      * @param firstname
      * @param lastname
      * @param dateOfBirth
@@ -27,7 +27,7 @@ module.exports = class Artist{
     }
 
     /**
-     * This method returns artist string
+     * @brief This method returns artist string
      * @param withAge : include age in the string if set to true
      * @returns "Firstname Lastname {Age}"
      * @exception throws DateOfBirthException Date Of Birth was not provided
