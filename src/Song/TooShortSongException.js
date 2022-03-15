@@ -1,3 +1,3 @@
 const SongException = require("./SongException.js");
-module.exports = class TooShortSongException extends TooShortSongException{
+module.exports = class TooShortSongException extends SongException{
 }

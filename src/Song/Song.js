@@ -27,7 +27,16 @@ module.exports = class Song {
      * @exception Throws DuplicateArtistException if the list contains more than one time the same artist
      */
     constructor(title, length, artists) {
-        throw new Error();
+        if (length < 10){
+            throw new TooShortSongException();
+        }
+        this.#title = title;
+        this.#length = length;
+        this.#artists = artists;
+    }
+
+    get title(){
+        return this.#title;
     }
 
     /**
@@ -35,7 +44,27 @@ module.exports = class Song {
      * @returns the list of artists or, if the list is empty, returns null.
      */
     get artists(){
-        throw new Error();
+        return this.#artists;
+    }
+
+    /**
+     * @brief This getter returns the song's length
+     * @returns song's length in seconds
+     */
+    get length(){
+        return this.#length;
+    }
+
+    /**
+     * @brief This setter update the song's length value
+     * @param value : number in seconds
+     * @exception Throws TooShortLengthException if the song length do not reach 10 seconds.
+     */
+    set length(value){
+        if (value < 10){
+            throw new TooShortSongException();
+        }
+        this.#length = value;
     }
     //endregion public methods
 

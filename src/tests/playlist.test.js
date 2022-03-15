@@ -10,6 +10,29 @@ const DuplicateSongException = require('../Playlist/DuplicateSongException.js');
 const Artist = require("../Artist/Artist.js");
 const Song = require("../Song/Song.js");
 
+test('allGetters_NominalCase_Success', () => {
+    //given
+    let artist1 = new Artist("firstname1", "lastname1");
+    let artist2 = new Artist("firstname2", "lastname2");
+    let artist3 = new Artist("firstname3", "lastname3");
+    let artistsSong1 = [artist1, artist2, artist3];
+    let song1 = new Song("Title1", 45, artistsSong1);
+    let expectedPlaylistTitle = "MyPlaylist";
+    let expectedSongs = [song1];
+    let playlist = new Playlist(expectedPlaylistTitle, expectedSongs);
+
+    let expectedPlaylistLength = 45;
+
+    //when
+    //getter are called in the same time as the assertion below
+
+    //then
+    expect(playlist.title).toEqual(expectedPlaylistTitle);
+    expect(playlist.length).toEqual(expectedPlaylistLength);
+    expect(playlist.songs.length).toEqual(expectedSongs.length);
+})
+
+
 test('constructor_DuplicateSongDetectedAndAllowed_Success', () => {
     //given
     let artist1 = new Artist("firstname1", "lastname1");
@@ -17,29 +40,19 @@ test('constructor_DuplicateSongDetectedAndAllowed_Success', () => {
     let artist3 = new Artist("firstname3", "lastname3");
     let artistsSong1 = [artist1, artist2, artist3];
     let song1 = new Song("Title1", 45, artistsSong1);
-    let expectedPlaylistLength = 145;
+    let expectedPlaylistTitle = "MyPlaylist";
+    let expectedSongs = [song1];
+    let playlist = new Playlist(expectedPlaylistTitle, expectedSongs);
+
+    let expectedPlaylistLength = 45;
 
     //when
-    expect(() => new Playlist("MyPlaylist", [song1, song1], true)).toThrow(DuplicateSongException);
+    //getter are called in the same time as the assertion below
 
     //then
-    //Exception is thrown
-})
-
-test('constructor_DuplicateSongDetectedButNotAllowed_ThrowException', () => {
-    //given
-    let artist1 = new Artist("firstname1", "lastname1");
-    let artist2 = new Artist("firstname2", "lastname2");
-    let artist3 = new Artist("firstname3", "lastname3");
-    let artistsSong1 = [artist1, artist2, artist3];
-    let song1 = new Song("Title1", 45, artistsSong1);
-    let expectedPlaylistLength = 145;
-
-    //when
-    expect(() => new Playlist("MyPlaylist", [song1, song1])).toThrow(DuplicateSongException);
-
-    //then
-    //Exception is thrown
+    expect(playlist.title).toEqual(expectedPlaylistTitle);
+    expect(playlist.length).toEqual(expectedPlaylistLength);
+    expect(playlist.songs.length).toEqual(expectedSongs.length);
 })
 
 test('length_NominalCase_Success', () => {
@@ -59,7 +72,7 @@ test('length_NominalCase_Success', () => {
     //getter are called in the same time as the assertion below
 
     //then
-    expect(expectedPlaylistLength).toEqual(playlist.length);
+    expect(playlist.length).toEqual(expectedPlaylistLength);
 })
 
 test('addSongs_NominalCase_Success', () => {
@@ -72,58 +85,15 @@ test('addSongs_NominalCase_Success', () => {
     let artist4 = new Artist("firstname1", "lastname1");
     let artistsSong2 = [artist1, artist2, artist4];
     let song2 = new Song("Title2", 100, artistsSong2);
-    let playlist = new Playlist("MyPlaylist", [song1, song2]);
+    let song3 = new Song("Title2", 100, artistsSong1);
+    let playlist = new Playlist("MyPlaylist", [song1]);
 
-    let songToAdd = new Song("TitleToAdd", 60,artistsSong1);
-    let expectedPlaylistLength = 205;
-
-    //when
-    playlist.addSongs([songToAdd]);
-
-    //then
-    expect(expectedPlaylistLength).toEqual(playlist.length);
-})
-
-test('addSongs_DuplicateDetectedAndAllowed_Success', () => {
-    //given
-    let artist1 = new Artist("firstname1", "lastname1");
-    let artist2 = new Artist("firstname2", "lastname2");
-    let artist3 = new Artist("firstname3", "lastname3");
-    let artistsSong1 = [artist1, artist2, artist3];
-    let song1 = new Song("Title1", 45, artistsSong1);
-    let artist4 = new Artist("firstname1", "lastname1");
-    let artistsSong2 = [artist1, artist2, artist4];
-    let song2 = new Song("Title2", 100, artistsSong2);
-    let playlist = new Playlist("MyPlaylist", [song1, song2], true);
-    let expectedPlaylistLength = 145;
-
-    let songToAdd = new Song("Title1", 60,artistsSong1);
+    let songsToAdd = [song2, song3];
+    let expectedPlaylistLength = 245;
 
     //when
-    playlist.addSongs([songToAdd]);
+    playlist.addSongs(songsToAdd);
 
     //then
-    expect(expectedPlaylistLength).toEqual(playlist.length);
-})
-
-test('addSongs_DuplicateDetectedNotAllowed_ThrowException', () => {
-    //given
-    let artist1 = new Artist("firstname1", "lastname1");
-    let artist2 = new Artist("firstname2", "lastname2");
-    let artist3 = new Artist("firstname3", "lastname3");
-    let artistsSong1 = [artist1, artist2, artist3];
-    let song1 = new Song("Title1", 45, artistsSong1);
-    let artist4 = new Artist("firstname1", "lastname1");
-    let artistsSong2 = [artist1, artist2, artist4];
-    let song2 = new Song("Title2", 100, artistsSong2);
-    let playlist = new Playlist("MyPlaylist", [song1, song2]);
-    let expectedPlaylistLength = 145;
-
-    let songToAdd = new Song("Title1", 60,artistsSong1);
-
-    //when
-    playlist.addSongs([songToAdd]);
-
-    //then
-    expect(expectedPlaylistLength).toEqual(playlist.length);
+    expect(playlist.length).toEqual(expectedPlaylistLength);
 })

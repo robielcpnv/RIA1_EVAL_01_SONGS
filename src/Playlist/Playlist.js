@@ -7,16 +7,12 @@
 
 "use strict";
 
-const Artist = require("../Artist/Artist.js");
-const DuplicateArtistException = require("../Song/DuplicateArtistException.js");
-const TooShortLengthException = require("./TooShortLengthException.js");
-
 module.exports = class Playlist {
 
     //region private attributes
     #title;
-    #length;
     #songs;
+    #allowDuplicate;
     //endregion private attributes
 
     //region public methods
@@ -27,7 +23,13 @@ module.exports = class Playlist {
      * @exception throws DuplicateException thrown when allowDuplicate is set to false and duplicate detected
      */
     constructor(title, songs, allowDuplicate = true) {
-        throw new Error();
+        this.#title = title;
+        this.#songs = songs;
+        this.#allowDuplicate = allowDuplicate;
+    }
+
+    get title(){
+        return this.#title;
     }
 
     /**
@@ -35,17 +37,35 @@ module.exports = class Playlist {
      *        Sum of all songs length, include duplicate.
      */
     get length(){
-        throw new Error();
+        let sum = 0;
+        this.#songs.forEach(function(song){
+            sum += song.length;
+        })
+        return sum;
+    }
+
+    /**
+     * @brief This getter returns the current Song's list
+     * @returns songs
+     */
+    get songs(){
+        return this.#songs;
     }
 
     /**
      * @brief This method adds a list of song in the existing list
-     * @param songs
-     * @returns the list of song, after adding the new list of song
+     * @param songsToAdd : Song[]
+     * @returns the list of song, after adding the new list of songs
      * @exception throws DuplicateException when duplicate are not allowed and detected
      */
-    addSongs(songs){
-        throw new Error();
+    addSongs(songsToAdd){
+        if (this.#songs == null){
+            this.#songs = songsToAdd;
+        }else{
+            for (let i = 0 ; i < songsToAdd.length ; i++){
+                this.#songs.push(songsToAdd[i]);
+            }
+        }
     }
 
     /**
