@@ -2,7 +2,7 @@
  * @file      artist.test.js
  * @brief     This class is designed to test the behaviour of an artist.
  * @author    Created by Nicolas.GLASSEY
- * @version   13-MAR-2022 - original (dedicated to RIA1 EVAL)
+ * @version   15-MAR-2022 - original (dedicated to RIA1 EVAL)
  */
 
 "use strict";
@@ -18,7 +18,7 @@ test('toString_NominalCaseWithoutDateOfBirth_Success', () => {
     let expectedToString = expectedFirstname + " " + expectedLastname;
 
     //when
-    //we call the getters directly in assertion below
+    //getters are called directly in assertion below
 
     //then
     expect(artist.toString()).toEqual(expectedToString);
@@ -33,7 +33,7 @@ test('toString_NominalCaseWithDateOfBirth_Success', () => {
     let expectedToString = expectedFirstname + " " + expectedLastname + " " + expectedDateOfBirth.toString();
 
     //when
-    //we call the getters directly in assertion below
+    //getters are called directly in assertion below
 
     //then
     expect(artist.toString(true)).toEqual(expectedToString);

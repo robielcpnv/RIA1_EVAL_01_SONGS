@@ -2,16 +2,14 @@
  * @file      song.test.js
  * @brief     This class is designed to test the behaviour of a song.
  * @author    Created by Nicolas.GLASSEY
- * @version   13-MAR-2022 - original (dedicated to RIA1 EVAL)
+ * @version   15-MAR-2022 - original (dedicated to RIA1 EVAL)
  */
 
 "use strict";
 
 const Song = require('../Song/Song.js');
 const TooShortSongException = require('../Song/TooShortSongException.js');
-const DuplicateArtistException = require('../Song/DuplicateArtistException.js');
 const Artist = require("../Artist/Artist.js");
-const Playlist = require("../Playlist/Playlist.js");
 
 test('allGetters_NominalCase_Success', () => {
     //given
@@ -22,7 +20,7 @@ test('allGetters_NominalCase_Success', () => {
     let song = new Song(expectedTitle, expectedLength, expectedArtists);
 
     //when
-    //getter are called in the same time as the assertion below
+    //getters are called in the same time as the assertion below
 
     //then
     expect(song.title).toEqual(expectedTitle);
@@ -35,7 +33,6 @@ test('constructor_TooShortSong_ThrowException', () => {
     //given
     let artist1 = new Artist("firstname1", "lastname1");
     let expectedArtists = [artist1];
-    let actualArtists = null;
 
     //when
     expect(() => new Song("Title", 9, expectedArtists)).toThrow(TooShortSongException);
