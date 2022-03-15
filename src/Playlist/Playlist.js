@@ -14,14 +14,12 @@ module.exports = class Playlist {
     //region private attributes
     #title;
     #songs;
-    #allowDuplicate;
     //endregion private attributes
 
     //region public methods
     /**
      * @brief This method constructs a Playlist object (title must be unique)
      * @param songs : Song[] of songs
-     * @param allowDuplicate : boolean to add several times the same song
      */
     constructor(title, songs) {
         throw new Error();
@@ -33,7 +31,7 @@ module.exports = class Playlist {
 
     /**
      * @brief This getter returns the Playlist's length in seconds
-     *        Sum of all songs length, include duplicate.
+     *        Sum of all songs length.
      */
     get length(){
         throw new Error();

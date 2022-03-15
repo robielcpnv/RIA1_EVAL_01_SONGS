@@ -2,7 +2,7 @@
  * @file      playlist.test.js
  * @brief     This class is designed to test the behaviour of a Playlist.
  * @author    Created by Nicolas.GLASSEY
- * @version   13-MAR-2022 - original (dedicated to RIA1 EVAL)
+ * @version   15-MAR-2022 - original (dedicated to RIA1 EVAL)
  */
 
 const Playlist = require('../Playlist/Playlist.js');
