@@ -2,26 +2,26 @@
  * @file      artist.test.js
  * @brief     This class is designed to test the behaviour of an artist.
  * @author    Created by Nicolas.GLASSEY
- * @version   13-MAR-2022 - original (dedicated to RIA1 EVAL)
+ * @version   15-MAR-2022 - original (dedicated to RIA1 EVAL)
  */
 
 "use strict";
 
 const Artist =  require('../Artist/Artist.js');
-const DateOfBirthException = require('DateOfBirthException.js');
+const DateOfBirthException = require('../Artist/DateOfBirthException.js');
 
 test('toString_NominalCaseWithoutDateOfBirth_Success', () => {
     //given
     let expectedFirstname = "Firstname";
     let expectedLastname = "Lastname";
     let artist = new Artist(expectedFirstname, expectedLastname);
-    let expectedToString = expectedFirstname + expectedLastname;
+    let expectedToString = expectedFirstname + " " + expectedLastname;
 
     //when
-    //we call the getters directly in assertion below
+    //getters are called directly in assertion below
 
     //then
-    expect(expectedToString).toEqual(artist.toString());
+    expect(artist.toString()).toEqual(expectedToString);
 })
 
 test('toString_NominalCaseWithDateOfBirth_Success', () => {
@@ -30,13 +30,13 @@ test('toString_NominalCaseWithDateOfBirth_Success', () => {
     let expectedLastname = "Lastname";
     let expectedDateOfBirth = Date(1955, 11, 23);
     let artist = new Artist(expectedFirstname, expectedLastname, expectedDateOfBirth);
-    let expectedToString = expectedFirstname + expectedLastname + expectedDateOfBirth.toString();
+    let expectedToString = expectedFirstname + " " + expectedLastname + " " + expectedDateOfBirth.toString();
 
     //when
-    //we call the getters directly in assertion below
+    //getters are called directly in assertion below
 
     //then
-    expect(expectedToString).toEqual(artist.toString(true));
+    expect(artist.toString(true)).toEqual(expectedToString);
 })
 
 test('toString_DateOfBirthNotProvided_ThrowException', () => {

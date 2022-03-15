@@ -2,10 +2,10 @@
  * @file      Artist.js
  * @brief     This class is designed to manage an artist.
  * @author    Created by Nicolas.GLASSEY
- * @version   12-MAR-2022 - original (dedicated to RIA1 EVAL)
+ * @version   15-MAR-2022 - original (dedicated to RIA1 EVAL)
  */
 
-const AgeException = require('src/Artist/DateOfBirthException.js');
+const DateOfBirthException = require('./DateOfBirthException.js');
 
 module.exports = class Artist{
 
