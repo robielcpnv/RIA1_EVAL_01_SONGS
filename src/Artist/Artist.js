@@ -28,9 +28,9 @@ module.exports = class Artist{
 
     /**
      * @brief This method returns artist string
-     * @param withAge : include age in the string if set to true
+     * @param withAge : boolean must add the dateOfBirth if true
      * @returns "Firstname Lastname {Age}"
-     * @exception throws DateOfBirthException Date Of Birth was not provided
+     * @exception throws DateOfBirthException if DateOfBirth was not provided
      */
     toString(withDateOfBirth = false){
         throw new Error();
