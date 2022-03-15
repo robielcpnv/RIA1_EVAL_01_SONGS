@@ -24,12 +24,11 @@ module.exports = class Playlist {
      * @param allowDuplicate : boolean to add several times the same song
      */
     constructor(title, songs) {
-        this.#title = title;
-        this.#songs = songs;
+        throw new Error();
     }
 
     get title(){
-        return this.#title;
+        throw new Error();
     }
 
     /**
@@ -37,11 +36,7 @@ module.exports = class Playlist {
      *        Sum of all songs length, include duplicate.
      */
     get length(){
-        let sum = 0;
-        this.#songs.forEach(function(song){
-            sum += song.length;
-        })
-        return sum;
+        throw new Error();
     }
 
     /**
@@ -49,7 +44,7 @@ module.exports = class Playlist {
      * @returns songs
      */
     get songs(){
-        return this.#songs;
+        throw new Error();
     }
 
     /**
@@ -58,13 +53,7 @@ module.exports = class Playlist {
      * @returns the list of songs, after including the "songsToAdd" in the current song's list
      */
     addSongs(songsToAdd){
-        if (this.#songs == null){
-            this.#songs = songsToAdd;
-        }else{
-            for (let i = 0 ; i < songsToAdd.length ; i++){
-                this.#songs.push(songsToAdd[i]);
-            }
-        }
+        throw new Error();
     }
 
     /**
@@ -75,10 +64,7 @@ module.exports = class Playlist {
      * @exception Throws EmptySongsListException if the newListOfSongs is empty
      */
     initSongs(newListOfSongs){
-        if(newListOfSongs == null){
-            throw new EmptySongsListException();
-        }
-        this.#songs = newListOfSongs;
+        throw new Error();
     }
     //endregion public methods
 

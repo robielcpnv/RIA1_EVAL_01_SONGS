@@ -26,12 +26,7 @@ module.exports = class Song {
      * @exception Throws TooShortLengthException if the song's length do not reach 10 seconds.
      */
     constructor(title, length, artists) {
-        if (length < 10){
-            throw new TooShortSongException();
-        }
-        this.#title = title;
-        this.#length = length;
-        this.#artists = artists;
+        throw new Error();
     }
 
     /**
@@ -39,7 +34,7 @@ module.exports = class Song {
      * @returns {*}
      */
     get title(){
-        return this.#title;
+        throw new Error();
     }
 
     /**
@@ -47,7 +42,7 @@ module.exports = class Song {
      * @returns {*}
      */
     get artists(){
-        return this.#artists;
+        throw new Error();
     }
 
     /**
@@ -55,7 +50,7 @@ module.exports = class Song {
      * @returns {*}
      */
     get length(){
-        return this.#length;
+        throw new Error();
     }
 
     /**
@@ -64,10 +59,7 @@ module.exports = class Song {
      * @exception Throws TooShortLengthException if the song's length do not reach 10 seconds.
      */
     set length(value){
-        if (value < 10){
-            throw new TooShortSongException();
-        }
-        this.#length = value;
+        throw new Error();
     }
     //endregion public methods
 

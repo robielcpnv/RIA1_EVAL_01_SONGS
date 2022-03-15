@@ -2,7 +2,7 @@
  * @file      Artist.js
  * @brief     This class is designed to manage an artist.
  * @author    Created by Nicolas.GLASSEY
- * @version   12-MAR-2022 - original (dedicated to RIA1 EVAL)
+ * @version   15-MAR-2022 - original (dedicated to RIA1 EVAL)
  */
 
 const DateOfBirthException = require('./DateOfBirthException.js');
@@ -23,9 +23,7 @@ module.exports = class Artist{
      * @param dateOfBirth
      */
     constructor (firstname, lastname, dateOfBirth = null) {
-        this.#firstname = firstname;
-        this.#lastname = lastname;
-        this.#dateOfBirth = dateOfBirth;
+        throw new Error();
     }
 
     /**
@@ -35,15 +33,7 @@ module.exports = class Artist{
      * @exception throws DateOfBirthException Date Of Birth was not provided
      */
     toString(withDateOfBirth = false){
-        let stringToReturn = this.#firstname + " " + this.#lastname;
-        if (withDateOfBirth){
-            if (this.#dateOfBirth == null){
-                throw new DateOfBirthException();
-            }else{
-                stringToReturn += " " + this.#dateOfBirth;
-            }
-        }
-        return stringToReturn;
+        throw new Error();
     }
     //endregion public methods
 

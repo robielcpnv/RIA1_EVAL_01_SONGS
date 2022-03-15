@@ -10,7 +10,7 @@ Les compétences évaluées sont les suivantes:
 
 * Dessiner un diagramme de classe en partant d'un code existant.
 * Coder en partant des tests.
-* Appliquer des bonnes pratiques OOP.
+* Appliquer les bonnes pratiques OOP.
 
 ## Installation du projet
 
@@ -38,7 +38,7 @@ Pour tester tout le projet :
 
 Le résultat a obtenir en début de projet :
 
-//TODO IMG
+  ![Start](./img/start.PNG)
 
 Pour tester une seule classe :
 
@@ -69,14 +69,13 @@ Lors de la lecture en commun des tests, vos retours sont les bienvenus.
 
 ## Livraision
 * Un zip respectant les critères suivants:
-  * Nommage = RIA1_EVAL01_[FirstFamilyName].zip
+  * Nommage = RIA1_EVAL01_[IntranetFirstFamilyName].zip
   * Livré dans teams, via un message privé au scrum master (qui vous quittancera la bonne réception).
-  * Les fichiers en lien avec git.
-  * La grille d'évaluation remplie.
+  * Les fichiers en lien avec git. permettant de voir la bonne utilisation du versioning.
 * La branche qui sera prise en compte pour l'évaluation est la "develop"
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+Cet examen est la propriété du CPNV et de son auteur.
 
 ## Source 
 [Make a readme](https://www.makeareadme.com/)
