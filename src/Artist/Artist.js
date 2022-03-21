@@ -35,7 +35,12 @@ module.exports = class Artist{
      * @exception throws DateOfBirthException if DateOfBirth was not provided
      */
     toString(withDateOfBirth = false){
+        if(!withDateOfBirth) {
             return`${this.#firstname} ${this.#lastname}`;
+        }
+        else {
+            return`${this.#firstname} ${this.#lastname} ${this.#dateOfBirth}`;
+        }
 
     }
     //endregion public methods
