@@ -5,9 +5,9 @@
  * @version   15-MAR-2022 - original (dedicated to RIA1 EVAL)
  */
 
-const DateOfBirthException = require('./DateOfBirthException.js');
+const DateOfBirthException = require("./DateOfBirthException.js");
 
-module.exports = class Artist{
+module.exports = class Artist {
 
     //region private attributes
     #firstname;
@@ -22,8 +22,10 @@ module.exports = class Artist{
      * @param lastname
      * @param dateOfBirth
      */
-    constructor (firstname, lastname, dateOfBirth = null) {
-        throw new Error();
+    constructor(firstname, lastname, dateOfBirth = null) {
+        this.#firstname = firstname;
+        this.#lastname = lastname;
+        this.#dateOfBirth = dateOfBirth;
     }
 
     /**
@@ -32,9 +34,18 @@ module.exports = class Artist{
      * @returns "Firstname Lastname {Age}"
      * @exception throws DateOfBirthException if DateOfBirth was not provided
      */
-    toString(withDateOfBirth = false){
-        throw new Error();
+    toString(withDateOfBirth = false) {
+        if (!withDateOfBirth) {
+            return `${this.#firstname} ${this.#lastname}`;
+        }
+        else if (this.#dateOfBirth !== null || Object.prototype.toString.call(this.#dateOfBirth) === "[object Date]") {
+            return `${this.#firstname} ${this.#lastname} ${this.#dateOfBirth}`;
+        }
+        else {
+            throw new DateOfBirthException('DateOfBirth was not provided');
+        }
     }
+
     //endregion public methods
 
     //region private methods
