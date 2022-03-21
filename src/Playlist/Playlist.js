@@ -56,7 +56,13 @@ module.exports = class Playlist {
      * @returns the list of songs, after including the "songsToAdd" in the current song's list
      */
     addSongs(songsToAdd){
-        this.#songs.push(songsToAdd)
+        if (this.#songs == null){
+            this.#songs = songsToAdd;
+        }else{
+            for (let i = 0 ; i < songsToAdd.length ; i++){
+                this.#songs.push(songsToAdd[i]);
+            }
+        }
     }
 
     /**
