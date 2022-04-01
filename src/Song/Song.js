@@ -16,7 +16,7 @@ module.exports = class Song {
     #length;
     #artists;
     //endregion private attributes
-
+    MAX_SONG_LENGTH = 10;
     //region public methods
     /**
      * @brief This method constructs a Song Object (title must be unique)
@@ -26,7 +26,7 @@ module.exports = class Song {
      * @exception Throws TooShortLengthException if the song's length do not reach 10 seconds.
      */
     constructor(title, length, artists) {
-        if (length < 10) {
+        if (length < this.MAX_SONG_LENGTH) {
             throw new TooShortSongException('the song\'s length do not reach 10 seconds.');
         }
         this.#title = title;
